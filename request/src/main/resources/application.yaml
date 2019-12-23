@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: request-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+    open-in-view: false
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/pooyabyte
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8085
+
+

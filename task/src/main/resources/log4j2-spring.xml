@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+    <Properties>
+        <Property name="log-path">c:/logs/</Property>
+        <Property name="log-archive">c:/logs/archive/</Property>
+        <Property name="file-name">pooyabyte-task</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+        <RollingFile name="App-File-Appender"
+                     fileName="${log-path}/${file-name}_app.log"
+                     filePattern="${log-archive}/${file-name}_app-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <RollingFile name="Other-File-Appender"
+                     fileName="${log-path}/${file-name}_other.log"
+                     filePattern="${log-archive}/${file-name}_app-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework" level="warn" additivity="false">
+            <AppenderRef ref="Console-Appender"/>
+            <AppenderRef ref="Other-File-Appender"/>
+        </Logger>
+        <Logger name="com.msrazavi.test.pooyabyte.task.service.step" level="warn" additivity="false">
+            <AppenderRef ref="Console-Appender"/>
+            <AppenderRef ref="App-File-Appender"/>
+        </Logger>
+<!--        <Logger name="org.hibernate" level="info" additivity="false">
+            <AppenderRef ref="App-File-Appender"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="debug" additivity="false">
+            <AppenderRef ref="App-File-Appender"/>
+        </Logger>
+        <Logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="false">
+            <AppenderRef ref="App-File-Appender"/>
+        </Logger>-->
+        <Root level="warn">
+            <AppenderRef ref="Console-Appender"/>
+            <AppenderRef ref="Other-File-Appender"/>
+        </Root>
+    </Loggers>
+</Configuration>
