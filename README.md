@@ -1,5 +1,5 @@
 # Test Steps:
-##1- #add accounts:
+##1- add accounts:
 `INSERT INTO pooyabyte.account (id, created_by, created_date, last_modified_by, last_modified_date, national_code) VALUES (1, 'mehdi', '2019-12-22 19:22:45', null, null, '1');`
 
 ##2- add fake data

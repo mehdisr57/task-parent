@@ -1,5 +1,6 @@
 package com.msrazavi.test.pooyabyte.common.schema.dto;
 
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -8,6 +9,10 @@ import java.util.Objects;
 public abstract class BaseDto {
 
     private Long id;
+    private Date createDate;
+    private Date lastModifiedDate;
+    private String createBy;
+    private String lastModifiedBy;
 
     public Long getId() {
         return id;
@@ -15,6 +20,38 @@ public abstract class BaseDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 
     @Override
