@@ -52,9 +52,9 @@ public class TransferProcessor implements ItemProcessor<Request, TransferStepDto
 
     private Request getRequest(Request request) {
         EntryMessage traceEntry = LOGGER.traceEntry("Request: {}", request);
+        request.setLastDate(new Date());
         NextDateCalculator calculator = new NextDateCalculator(request.getCourse(), request.getStartDate(), request.getLastDate());
         request.setNextDate(calculator.getNextDate());
-        request.setLastDate(new Date());
         return LOGGER.traceExit(traceEntry, request);
     }
 

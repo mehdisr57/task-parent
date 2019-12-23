@@ -172,7 +172,7 @@ public final class NextDateCalculator {
         }
 
         if (resultLocalDate.compareTo(nowLocalDate) < 1) {
-            resultLocalDate = nowLocalDate.plusDays(1);
+            resultLocalDate = nowLocalDate;
         }
 
         return LOGGER.traceExit(traceEntry, convertToDate(resultLocalDate));
