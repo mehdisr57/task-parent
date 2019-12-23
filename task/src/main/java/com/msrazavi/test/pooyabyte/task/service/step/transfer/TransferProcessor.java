@@ -1,6 +1,5 @@
 package com.msrazavi.test.pooyabyte.task.service.step.transfer;
 
-import com.msrazavi.test.pooyabyte.common.repository.AccountRepository;
 import com.msrazavi.test.pooyabyte.common.schema.entity.Account;
 import com.msrazavi.test.pooyabyte.common.schema.entity.Request;
 import com.msrazavi.test.pooyabyte.common.schema.entity.Voucher;
@@ -26,12 +25,6 @@ import java.util.Optional;
 @Service
 public class TransferProcessor implements ItemProcessor<Request, TransferStepDto> {
     private static final Logger LOGGER = LogManager.getLogger(TransferProcessor.class);
-
-    private final AccountRepository accountRepository;
-
-    public TransferProcessor(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
 
     @Override
     public TransferStepDto process(Request request) {
@@ -78,14 +71,10 @@ public class TransferProcessor implements ItemProcessor<Request, TransferStepDto
         if (Objects.isNull(account) || Objects.isNull(debit) || Objects.isNull(credit)) {
             return Optional.empty();
         }
-        Optional<Account> optionalAccountFrom = accountRepository.findById(account.getId());
-        Optional<VoucherDetail> result = optionalAccountFrom.map(a -> {
-            VoucherDetail r = new VoucherDetail();
-            r.setDebit(debit);
-            r.setCredit(credit);
-            r.setAccount(a);
-            return r;
-        });
-        return LOGGER.traceExit(traceEntry, result);
+        VoucherDetail result = new VoucherDetail();
+        result.setDebit(debit);
+        result.setCredit(credit);
+        result.setAccount(account);
+        return LOGGER.traceExit(traceEntry, Optional.of(result));
     }
 }

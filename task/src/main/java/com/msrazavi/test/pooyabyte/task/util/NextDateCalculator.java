@@ -172,13 +172,13 @@ public final class NextDateCalculator {
         }
 
         if (resultLocalDate.compareTo(nowLocalDate) < 1) {
-            return nowDate;
+            resultLocalDate = nowLocalDate.plusDays(1);
         }
 
         return LOGGER.traceExit(traceEntry, convertToDate(resultLocalDate));
     }
 
-    public static Date convertToDate(LocalDate localDate) {
+    private static Date convertToDate(LocalDate localDate) {
         EntryMessage traceEntry = LOGGER.traceEntry("localDate: {}", localDate);
         LocalTime localTime = LocalTime.of(1, 1, 1);
         Date result = Date.from(localDate.atTime(localTime).atZone(ZoneId.systemDefault()).toInstant());

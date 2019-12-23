@@ -4,8 +4,8 @@ import com.msrazavi.test.pooyabyte.common.schema.entity.Request;
 import com.msrazavi.test.pooyabyte.common.schema.entity.Voucher;
 import com.msrazavi.test.pooyabyte.common.schema.entity.VoucherDetail;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * this class use to transfer data between process and writer
@@ -16,7 +16,7 @@ public class TransferStepDto {
 
     private Request request;
     private Voucher voucher;
-    private Set<VoucherDetail> voucherDetails = new HashSet<>(2);
+    private List<VoucherDetail> voucherDetails = new ArrayList<>(2);
 
     public Request getRequest() {
         return request;
@@ -34,11 +34,11 @@ public class TransferStepDto {
         this.voucher = voucher;
     }
 
-    public Set<VoucherDetail> getVoucherDetails() {
+    public List<VoucherDetail> getVoucherDetails() {
         return voucherDetails;
     }
 
-    public void setVoucherDetails(Set<VoucherDetail> voucherDetails) {
+    public void setVoucherDetails(List<VoucherDetail> voucherDetails) {
         this.voucherDetails = voucherDetails;
     }
 
