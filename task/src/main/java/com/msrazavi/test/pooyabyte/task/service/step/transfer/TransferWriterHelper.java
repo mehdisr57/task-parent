@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
+ * this helper used for transactional insertion
+ *
  * @author Mehdi Sadat Razavi
  */
 @Service

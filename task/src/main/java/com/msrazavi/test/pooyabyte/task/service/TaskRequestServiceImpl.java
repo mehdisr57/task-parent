@@ -30,6 +30,12 @@ public class TaskRequestServiceImpl extends RequestServiceImpl {
         this.accountRepository = accountRepository;
     }
 
+    /**
+     * fetch accounts from repository and add to entity
+     *
+     * @param request to save
+     * @return saved request
+     */
     @Override
     public Optional<RequestDto> save(RequestDto request) {
         try {
@@ -54,19 +60,5 @@ public class TaskRequestServiceImpl extends RequestServiceImpl {
             LOGGER.error("error in save - " + e.getMessage(), e);
             return Optional.empty();
         }
-    }
-
-    @Override
-    public Optional<RequestDto> findWithVouchers(Long id) {
-        EntryMessage traceEntry = LOGGER.traceEntry("id: {}", id);
-        if (Objects.isNull(id)) {
-            throw new IllegalArgumentException("id in invalid");
-        }
-        Request request = getRepository().findWithVouchers(id);
-        if (Objects.isNull(request)) {
-            return Optional.empty();
-        }
-
-        return LOGGER.traceExit(traceEntry, Optional.of(getMapper().entityToDto(request, new CycleAvoidingMappingContext())));
     }
 }

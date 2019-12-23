@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * this class use to transfer data between process and writer
+ *
  * @author Mehdi Sadat Razavi
  */
 public class TransferStepDto {

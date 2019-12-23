@@ -20,6 +20,10 @@ import java.util.Optional;
 @EntityScan(basePackages = {"com.msrazavi.test.pooyabyte.common.schema.entity"})
 public class JpaConfig {
 
+    /**
+     * @return AuditorAware - current thread name
+     * on enable security return username
+     */
     @Bean
     public AuditorAware<String> auditorAware() {
         return () -> Optional.of(Thread.currentThread().getName());

@@ -34,6 +34,10 @@ public class LaunchBatchConfig {
         LOGGER.traceExit(traceEntry);
     }
 
+    /**
+     * perform scheduled transferJob
+     * @throws Exception if parameter is not valid
+     */
         @Scheduled(cron = "0 0 1 * * *")
 //    @Scheduled(cron = "0 0/5 * * * *")
     public void perform() throws Exception {

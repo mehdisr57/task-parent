@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * launch TaskServiceApplication application
+ *
  * @author Mehdi Sadat Razavi
  */
 @ComponentScan(basePackages = {

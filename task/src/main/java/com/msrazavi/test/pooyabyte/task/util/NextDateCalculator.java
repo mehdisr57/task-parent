@@ -25,6 +25,14 @@ public final class NextDateCalculator {
     private LocalDate startLocalDate;
 
 
+    /**
+     * Constructor
+     *
+     * @param course    course of request
+     * @param startDate start date of request
+     * @param lastDate  last date of request
+     * @throws IllegalArgumentException if startDate or course is null
+     */
     public NextDateCalculator(Course course, Date startDate, Date lastDate) {
         EntryMessage traceEntry = LOGGER.traceEntry("course: {}, startDate: {}, lastDate: {}", course, startDate, lastDate);
         this.course = course;
@@ -48,6 +56,11 @@ public final class NextDateCalculator {
         LOGGER.traceExit(traceEntry);
     }
 
+    /**
+     * create next date base on course and start date and last date if exist
+     *
+     * @return next date
+     */
     public Date getNextDate() {
         EntryMessage traceEntry = LOGGER.traceEntry();
 

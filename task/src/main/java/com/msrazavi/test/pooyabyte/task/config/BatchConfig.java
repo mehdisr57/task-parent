@@ -41,6 +41,12 @@ public class BatchConfig {
         LOGGER.traceExit(traceEntry);
     }
 
+    /**
+     * @param itemReader    reader an item reader
+     * @param itemProcessor processor an item processor
+     * @param itemWriter    writer an item writer
+     * @return transferStep
+     */
     @Bean
     protected Step transferStep(TransferReader itemReader,
                                 TransferProcessor itemProcessor,
@@ -58,6 +64,14 @@ public class BatchConfig {
         return LOGGER.traceExit(traceEntry, step);
     }
 
+    /**
+     * step to fix next date of request entity
+     *
+     * @param itemReader    reader an item reader
+     * @param itemProcessor processor an item processor
+     * @param itemWriter    writer an item writer
+     * @return setNextDate Step
+     */
     @Bean
     protected Step setNextStep(SetNextReader itemReader,
                                SetNextProcessor itemProcessor,
@@ -75,6 +89,13 @@ public class BatchConfig {
         return LOGGER.traceExit(traceEntry, step);
     }
 
+    /**
+     * create transferJob, this job has two step: transferStep & setNextStep
+     *
+     * @param transferStep step to insert voucher
+     * @param setNextStep  step to fix next date of request entity
+     * @return transferJob to run
+     */
     @Bean
     public Job transferJob(Step transferStep,
                            Step setNextStep) {
@@ -87,6 +108,11 @@ public class BatchConfig {
         return LOGGER.traceExit(traceEntry, job);
     }
 
+    /**
+     * for run job in concurrently
+     *
+     * @return TaskExecutor
+     */
     @Bean
     public TaskExecutor taskExecutor() {
         EntryMessage traceEntry = LOGGER.traceEntry();

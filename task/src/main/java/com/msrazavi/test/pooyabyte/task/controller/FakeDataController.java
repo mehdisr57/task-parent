@@ -42,6 +42,12 @@ public class FakeDataController {
         this.accountService = accountService;
     }
 
+    /**
+     * create fake records in the Request table with the number of input parameters
+     *
+     * @param count of record must be inserted
+     * @return success or error message
+     */
     @GetMapping("/{count}")
     public ResponseEntity<ResponseDto<String>> create(@PathVariable("count") Integer count) {
         EntryMessage traceEntry = LOGGER.traceEntry();
@@ -79,6 +85,9 @@ public class FakeDataController {
             this.count = count;
         }
 
+        /**
+         * Generates and stores random records
+         */
         @Override
         public void run() {
             EntryMessage traceEntry = LOGGER.traceEntry();
@@ -100,6 +109,11 @@ public class FakeDataController {
             LOGGER.traceExit(traceEntry);
         }
 
+        /**
+         * Creates two different random accounts
+         *
+         * @return two account
+         */
         private int[] randomAccount() {
             int f = randBetween(0, accountList.size() - 1);
             int t = -1;
@@ -113,6 +127,9 @@ public class FakeDataController {
             return new int[]{f, t};
         }
 
+        /**
+         * @return random date between 2017-2020
+         */
         private Date randDate() {
             EntryMessage traceEntry = LOGGER.traceEntry();
             GregorianCalendar gc = new GregorianCalendar();
@@ -123,6 +140,14 @@ public class FakeDataController {
             return LOGGER.traceExit(traceEntry, gc.getTime());
         }
 
+        /**
+         * Generates a random number between two period;
+         * this number can be equal to two period
+         *
+         * @param start of period
+         * @param end   of period
+         * @return random number
+         */
         private int randBetween(int start, int end) {
             EntryMessage traceEntry = LOGGER.traceEntry("start: {}, end: {}", start, end);
             int result = start + (int) Math.round(Math.random() * (end - start));

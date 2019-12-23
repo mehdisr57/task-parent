@@ -5,6 +5,7 @@ import com.msrazavi.test.pooyabyte.common.schema.entity.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.EntryMessage;
+import org.springframework.batch.core.annotation.AfterStep;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +15,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
+ * read Request from db
+ *
  * @author Mehdi Sadat Razavi
  */
 @Service
@@ -35,6 +38,14 @@ public class SetNextReader implements ItemReader<Request> {
         EntryMessage traceEntry = LOGGER.traceEntry();
         setDate();
         LOGGER.info("Step SetNext started - endDate is: " + endDate);
+        LOGGER.traceExit(traceEntry);
+    }
+
+    @AfterStep
+    public void exit() {
+        EntryMessage traceEntry = LOGGER.traceEntry();
+        items.clear();
+        LOGGER.info("Step SetNext finished - endDate id: " + endDate);
         LOGGER.traceExit(traceEntry);
     }
 

@@ -21,6 +21,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
+ * read request on today that not have been performed before
+ *
  * @author Mehdi Sadat Razavi
  */
 @Service
