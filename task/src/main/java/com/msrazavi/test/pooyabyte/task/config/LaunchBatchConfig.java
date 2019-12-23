@@ -34,8 +34,8 @@ public class LaunchBatchConfig {
         LOGGER.traceExit(traceEntry);
     }
 
-    //    @Scheduled(cron = "0 0 6 * * *")
-    @Scheduled(cron = "0 0/5 * * * *")
+        @Scheduled(cron = "0 0 1 * * *")
+//    @Scheduled(cron = "0 0/5 * * * *")
     public void perform() throws Exception {
         EntryMessage traceEntry = LOGGER.traceEntry();
 
